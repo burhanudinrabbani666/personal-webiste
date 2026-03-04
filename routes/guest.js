@@ -11,7 +11,6 @@ router.get("/home", (req, res, next) => {
 
 router.get("/article/:productId", (req, res, next) => {
   const productId = req.params.productId;
-
   res.render("./guest/article", {
     productId,
   });
