@@ -1,14 +1,13 @@
 const express = require("express");
 const { getArticle } = require("../models/article");
+const { homePage } = require("../controller/guest");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
   res.redirect("/home");
 });
 
-router.get("/home", (req, res, next) => {
-  res.render("./guest/home");
-});
+router.get("/home", homePage);
 
 router.get("/article/:articleId", (req, res, next) => {
   const id = req.params.articleId;
