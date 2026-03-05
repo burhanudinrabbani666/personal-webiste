@@ -4,7 +4,10 @@ const { ulid } = require("ulid");
 const { getArticle, publishNewArticle } = require("../models/article.js");
 
 router.get("/", (req, res, next) => {
-  res.render("./admin/admin");
+  const articles = getArticle();
+  res.render("./admin/admin", {
+    articles,
+  });
 });
 
 router.get("/new", (req, res, next) => {

@@ -10,7 +10,7 @@
     <div class="max-w-3xl m-auto mt-4 space-y-4">
       <div class="flex justify-between items-center border-b border-gray-300">
         <h1 class="text-4xl">Personal Blog</h1>
-        <a
+        <a  
           href="/admin/new"
           class="px-1 bg-blue-600 text-white h-max hover:bg-blue-700 rounded"
           >+ New Article</a
@@ -18,26 +18,29 @@
       </div>
 
       <ul class="flex flex-col gap-1">
-        <li class="flex justify-between">
-          <span>Lorem ipsum dolor sit amet.</span>
-          <div class="flex gap-4">
-            <a
+        <% for(let article of articles) {%> 
+          
+          <li class="flex justify-between">
+            <span><%= article.articleTitle%></span>
+            <div class="flex gap-4">
+              <a
               class="border border-gray-300 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-100"
-              href="/article/1"
+              href="/article/<%= article.id %>"
               >View</a
-            >
-            <a
+              >
+              <a
               class="border border-gray-300 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-100"
-              href="/admin/edit/1"
+              href="/admin/edit/<%= article.id %>"
               >Edit</a
-            >
-            <a
+              >
+              <a
               class="border border-gray-300 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-100"
               href="/admin"
               >Delete</a
-            >
-          </div>
-        </li>
+              >
+            </div>
+          </li>
+        <% } %>
       </ul>
     </div>
   </body>
