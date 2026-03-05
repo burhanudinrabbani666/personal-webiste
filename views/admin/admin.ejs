@@ -18,8 +18,8 @@
       </div>
 
       <ul class="flex flex-col gap-2">
-        <% for(let article of articles) {%> 
-          
+
+        <% for(let article of articles) {%>  
           <li class="flex justify-between items-center gap-4">
             <a href="/article/<%= article.id%>" class="flex-1"><%= article.articleTitle%></a>
             <div class="flex items-center gap-4">
@@ -31,6 +31,7 @@
             </div>
           </li>
         <% } %>
+        
       </ul>
     </div>
   </body>

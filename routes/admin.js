@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { ulid } = require("ulid");
-const { getArticle, publishNewArticle } = require("../models/article.js");
+const {
+  getArticle,
+  publishNewArticle,
+  createArticle,
+} = require("../models/article.js");
 const { render } = require("ejs");
 
 router.get("/", (req, res, next) => {
@@ -26,12 +30,10 @@ router.get("/edit/:productId", (req, res, next) => {
 
 router.post("/new", (req, res, next) => {
   const body = req.body;
-  const newArticle = {
-    id: ulid(),
-    ...body,
-  };
+  const newArticle = createArticle(body);
 
   const articleData = getArticle();
+
   articleData.push(newArticle);
 
   publishNewArticle(articleData);

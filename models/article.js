@@ -1,7 +1,17 @@
 const fs = require("fs");
 const path = require("path");
+const { ulid } = require("ulid");
 
 const pathFile = path.join(__dirname, "../data", "article.json");
+
+function createArticle(articleData) {
+  const article = {
+    id: ulid(),
+    ...articleData,
+  };
+
+  return article;
+}
 
 function getArticle() {
   if (!fs.existsSync(pathFile)) {
@@ -17,4 +27,4 @@ function publishNewArticle(newArticleData) {
   fs.writeFileSync(pathFile, JSON.stringify(newArticleData));
 }
 
-module.exports = { getArticle, publishNewArticle };
+module.exports = { createArticle, getArticle, publishNewArticle };
