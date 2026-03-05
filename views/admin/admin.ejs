@@ -18,7 +18,7 @@
 
         <% for(let article of articles) {%>  
           <li class="flex justify-between items-center py-2 px-1 rounded cursor-pointer hover:bg-gray-100">
-            <a href="/article/<%= article.id%>" class="flex-1"><%= article.articleTitle%></a>
+            <a href="/article/<%= article.id%>" class="flex-1"><%= article.title%></a>
             <div class="flex items-center gap-4">
               <a href="/admin/edit/<%= article.id%>" class="text-gray-400 border-b border-transparent hover:text-gray-500 hover:border-gray-400">Edit</a>
               <form action="/admin/delete-article" method="post" >

@@ -4,10 +4,12 @@ const { ulid } = require("ulid");
 
 const pathFile = path.join(__dirname, "../data", "article.json");
 
-function createArticle(articleData) {
+function createArticle(body) {
   const article = {
     id: ulid(),
-    ...articleData,
+    title: body.title.trim(),
+    createdAt: body.createdAt,
+    content: body.content.trim(),
   };
 
   return article;

@@ -14,10 +14,8 @@ exports.adminPage = (req, res, next) => {
 };
 
 exports.addNewArticlePage = (req, res, next) => {
-  const date = new Date().toISOString().split("T")[0];
-  res.render("./admin/new", {
-    publishDate: date,
-  });
+  const createdAt = new Date().toISOString().split("T")[0];
+  res.render("./admin/new", { createdAt });
 };
 
 exports.editArticelPage = (req, res, next) => {
@@ -55,10 +53,12 @@ exports.handleDeleteArticle = (req, res, next) => {
 
 exports.handleUpdateArticle = (req, res, next) => {
   const id = req.params.articleId;
-  const body = req.body;
+  const { title, createdAt, content } = req.body;
   const newArticle = {
     id,
-    ...body,
+    title: title.trim(),
+    createdAt,
+    content: content.trim(),
   };
 
   const articleData = getArticle();
