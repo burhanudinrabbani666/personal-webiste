@@ -3,6 +3,7 @@ const {
   createArticle,
   publishNewArticle,
   deleteArticle,
+  updateArticle,
 } = require("../models/article.js");
 
 exports.adminPage = (req, res, next) => {
@@ -19,6 +20,15 @@ exports.addNewArticlePage = (req, res, next) => {
   });
 };
 
+exports.editArticelPage = (req, res, next) => {
+  const id = req.params.articleId;
+  const articleData = getArticle();
+  const article = articleData.find((article) => article.id === id);
+
+  res.render("./admin/edit", { article });
+};
+
+// Post
 exports.handleCreateArticle = (req, res, next) => {
   const body = req.body;
   const newArticle = createArticle(body);
@@ -40,5 +50,23 @@ exports.handleDeleteArticle = (req, res, next) => {
   );
 
   deleteArticle(newArticleArray);
+  res.redirect("/admin");
+};
+
+exports.handleUpdateArticle = (req, res, next) => {
+  const id = req.params.articleId;
+  const body = req.body;
+  const newArticle = {
+    id,
+    ...body,
+  };
+
+  const articleData = getArticle();
+  const newArticleData = articleData.map((article) =>
+    article.id === newArticle.id ? newArticle : article,
+  );
+
+  updateArticle(newArticleData);
+
   res.redirect("/admin");
 };

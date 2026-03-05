@@ -31,9 +31,14 @@ function deleteArticle(newArticleArray) {
   fs.writeFileSync(pathFile, JSON.stringify(newArticleArray));
 }
 
+function updateArticle(newArticleArray) {
+  fs.writeFileSync(pathFile, JSON.stringify(newArticleArray));
+}
+
 module.exports = {
   createArticle,
   getArticle,
   publishNewArticle,
   deleteArticle,
+  updateArticle,
 };
