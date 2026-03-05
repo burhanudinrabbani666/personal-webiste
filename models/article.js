@@ -27,4 +27,13 @@ function publishNewArticle(newArticleData) {
   fs.writeFileSync(pathFile, JSON.stringify(newArticleData));
 }
 
-module.exports = { createArticle, getArticle, publishNewArticle };
+function deleteArticle(newArticleArray) {
+  fs.writeFileSync(pathFile, JSON.stringify(newArticleArray));
+}
+
+module.exports = {
+  createArticle,
+  getArticle,
+  publishNewArticle,
+  deleteArticle,
+};

@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { ulid } = require("ulid");
 const {
   getArticle,
   publishNewArticle,
   createArticle,
+  deleteArticle,
 } = require("../models/article.js");
 const { render } = require("ejs");
 
@@ -41,8 +41,14 @@ router.post("/new", (req, res, next) => {
 });
 
 router.post("/delete-article", (req, res, next) => {
-  console.log(req.body);
+  const { articleId } = req.body;
+  const articleData = getArticle();
 
+  const newArticleArray = articleData.filter(
+    (article) => article.id !== articleId,
+  );
+
+  deleteArticle(newArticleArray);
   res.redirect("/admin");
 });
 
