@@ -6,50 +6,31 @@ const {
   createArticle,
   deleteArticle,
 } = require("../models/article.js");
-const { render } = require("ejs");
+const {
+  adminPage,
+  addNewArticlePage,
+  handleCreateArticle,
+  handleDeleteArticle,
+} = require("../controller/admin.js");
 
-router.get("/", (req, res, next) => {
-  const articles = getArticle();
-  res.render("./admin/admin", {
-    articles,
-  });
-});
+router.get("/", adminPage);
+router.get("/new", addNewArticlePage);
 
-router.get("/new", (req, res, next) => {
-  const date = new Date().toISOString().split("T")[0];
-  res.render("./admin/new", {
-    publishDate: date,
-  });
-});
+router.get("/edit/:articleId", (req, res, next) => {
+  const id = req.params.articleId;
+  const articleData = getArticle();
+  const article = articleData.find((article) => article.id === id);
 
-router.get("/edit/:productId", (req, res, next) => {
-  res.render("./admin/edit");
+  res.render("./admin/edit", { article });
 });
 
 // Post
 
-router.post("/new", (req, res, next) => {
+router.post("/new", handleCreateArticle);
+router.post("/delete-article", handleDeleteArticle);
+router.post("/edit/:articleId", (req, res, nect) => {
   const body = req.body;
-  const newArticle = createArticle(body);
-
-  const articleData = getArticle();
-
-  articleData.push(newArticle);
-
-  publishNewArticle(articleData);
-  res.redirect("/admin");
-});
-
-router.post("/delete-article", (req, res, next) => {
-  const { articleId } = req.body;
-  const articleData = getArticle();
-
-  const newArticleArray = articleData.filter(
-    (article) => article.id !== articleId,
-  );
-
-  deleteArticle(newArticleArray);
-  res.redirect("/admin");
+  console.log(body);
 });
 
 module.exports = router;

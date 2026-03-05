@@ -6,7 +6,7 @@
   <body>
     <div class="max-w-3xl m-auto mt-4 space-y-4">
       <form
-        action="/admin/edit/:productId"
+        action="/admin/edit/<%= article.id%>"
         method="post"
         class="w-full space-y-4"
       >
@@ -25,7 +25,7 @@
             type="text"
             name="articelTitle"
             id="articelTitle"
-            placeholder="Article Title"
+            value="<%= article.articleTitle%>"
             class="py-1 w-full border-b border-gray-50 focus:border-gray-200 focus:outline-none"
           />
         </div>
@@ -34,10 +34,10 @@
           <label for="publishDate" class="hidden"></label>
           <input
             type="date"
-            value="2026-03-04"
-            name="articelTitle"
-            id="articelTitle"
-            disabled
+            value="<%= article.publishDate%>"
+            name="publishDate"
+            id="publishDate"
+            readonly
           />
         </div>
 
@@ -46,9 +46,10 @@
           <textarea
             name="content"
             id="content"
-            placeholder="Content"
             class="h-screen w-full outline-none"
-          ></textarea>
+          >
+            <%= article.content%>
+          </textarea>
         </div>
       </form>
     </div>
