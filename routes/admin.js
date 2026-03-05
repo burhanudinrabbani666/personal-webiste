@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ulid } = require("ulid");
 const { getArticle, publishNewArticle } = require("../models/article.js");
+const { render } = require("ejs");
 
 router.get("/", (req, res, next) => {
   const articles = getArticle();
@@ -34,6 +35,12 @@ router.post("/new", (req, res, next) => {
   articleData.push(newArticle);
 
   publishNewArticle(articleData);
+  res.redirect("/admin");
+});
+
+router.post("/delete-article", (req, res, next) => {
+  console.log(req.body);
+
   res.redirect("/admin");
 });
 

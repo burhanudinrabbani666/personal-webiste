@@ -12,32 +12,22 @@
         <h1 class="text-4xl">Personal Blog</h1>
         <a  
           href="/admin/new"
-          class="px-1 bg-blue-600 text-white h-max hover:bg-blue-700 rounded"
+          class="px-2 py-1 bg-blue-600 text-white h-max hover:bg-blue-700 rounded"
           >+ New Article</a
         >
       </div>
 
-      <ul class="flex flex-col gap-1">
+      <ul class="flex flex-col gap-2">
         <% for(let article of articles) {%> 
           
-          <li class="flex justify-between">
-            <span><%= article.articleTitle%></span>
-            <div class="flex gap-4">
-              <a
-              class="border border-gray-300 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-100"
-              href="/article/<%= article.id %>"
-              >View</a
-              >
-              <a
-              class="border border-gray-300 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-100"
-              href="/admin/edit/<%= article.id %>"
-              >Edit</a
-              >
-              <a
-              class="border border-gray-300 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-100"
-              href="/admin"
-              >Delete</a
-              >
+          <li class="flex justify-between items-center gap-4">
+            <a href="/article/<%= article.id%>" class="flex-1"><%= article.articleTitle%></a>
+            <div class="flex items-center gap-4">
+              <a href="/admin/edit/<%= article.id%>" class="text-gray-400 border-b border-transparent hover:text-gray-500 hover:border-gray-400">Edit</a>
+              <form action="/admin/delete-article" method="post" >
+                <input type="hidden" name="articleId" value="<%= article.id%>">
+                <button type="submit" class="text-gray-400 border-b border-transparent hover:text-gray-500 hover:border-gray-400">Delete</button>
+              </form>
             </div>
           </li>
         <% } %>

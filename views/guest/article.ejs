@@ -10,25 +10,18 @@
     <div class="max-w-3xl m-auto mt-4 flex flex-col gap-1">
       <a href="/" class="pb-1 hover:underline"> Back </a>
 
-      <div class="flex flex-col gap-1">
-        <h1 class="text-4xl">My first Article</h1>
+      <div class="flex flex-col gap-2">
+        <h1 class="text-4xl"><%= article.articleTitle%></h1>
         <p class="text-gray-500">
-          <time datetime="2026-03-04">March 04, 2026</time>
+          <time datetime="2026-03-04"
+            ><%= new Date(article.publishDate).toLocaleString("en-US") %></time
+          >
         </p>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus unde
-          doloribus dolorem iure quibusdam architecto placeat voluptatem
-          dolorum, in asperiores recusandae esse? Necessitatibus nostrum magnam
-          consequatur, voluptates rerum aperiam quaerat amet molestias labore
-          perferendis asperiores deleniti incidunt accusamus optio praesentium
-          unde quisquam. Nesciunt qui assumenda sunt cupiditate soluta
-          architecto, corrupti atque dolores delectus esse? Officiis quo, alias
-          deserunt vel esse error, provident dolore commodi iste eveniet
-          possimus hic accusantium. Impedit pariatur fuga ad magnam iste ratione
-          praesentium tempora doloribus dignissimos, reiciendis assumenda quam
-          ab ex dolorum numquam repellat ducimus accusamus nisi et. Ad magnam
-          quo aut saepe ea ratione consequatur?
-        </p>
+        <div class="">
+          <% for(let content of contentArray) {%>
+            <p class="mb-2"><%= content%></p>
+          <%}%>
+        </div>
       </div>
     </div>
   </body>
