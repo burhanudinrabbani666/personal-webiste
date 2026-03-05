@@ -1,12 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("node:path");
 
 // import path
 const guestRoutes = require("./routes/guest");
 const adminRoutes = require("./routes/admin");
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("view engine", "ejs");
 app.set("views", "views");

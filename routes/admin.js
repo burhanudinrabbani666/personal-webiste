@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { ulid } = require("ulid");
+const { getArticle, publishNewArticle } = require("../models/article.js");
 
 router.get("/", (req, res, next) => {
   res.render("./admin/admin");
@@ -20,7 +22,16 @@ router.get("/edit/:productId", (req, res, next) => {
 
 router.post("/new", (req, res, next) => {
   const body = req.body;
-  console.log(body);
+  const newArticle = {
+    id: ulid(),
+    ...body,
+  };
+
+  const articleData = getArticle();
+  articleData.push(newArticle);
+
+  publishNewArticle(articleData);
+  res.redirect("/admin");
 });
 
 module.exports = router;
